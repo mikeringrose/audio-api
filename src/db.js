@@ -11,23 +11,29 @@ const init = async (conn) => {
   const ArtistSchema = new Schema({
     name: String,
   });
-  const Artist = conn.model('artists', ArtistSchema);
+  const Artist = conn.model('Artist', ArtistSchema);
 
   const AlbumSchema = new Schema({
     title: String,
+    releaseDate: Date,
   });
-  const Album = conn.model('albums', AlbumSchema);
+  const Album = conn.model('Album', AlbumSchema);
 
   const SongSchema = new Schema({
     name: String,
     duration: Number,
     releaseDate: Date,
-    artist: {
+    artists: [{
       type: ObjectId,
-      ref: 'artists',
+      ref: 'Artist',
+    }],
+    album: {
+      type: ObjectId,
+      ref: 'Album',
     },
-  })
-  const Song = conn.model('songs', SongSchema);
+    url: String,
+  });
+  const Song = conn.model('Song', SongSchema);
 
   return { Artist, Album, Song };
 }

@@ -10,7 +10,6 @@ const server = new ApolloServer({
   context: ({ event, context }) => new Context(event, context, db),
   playground: true,
   introspection: true,
-  tracing: true,
 });
 
 exports.graphql = server.createHandler({

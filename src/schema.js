@@ -12,7 +12,7 @@ const schema = gql`
   type Song {
     id: ID!
     name: String!
-    artist: Artist!
+    artists: [Artist]!
     album: Album
     duration: Int!
     releaseDate: String!
@@ -21,7 +21,7 @@ const schema = gql`
 
   type Album {
     id: ID!
-    name: String!
+    title: String!
     artist: [Artist]!
     releaseDate: String!
   }
