@@ -1,0 +1,49 @@
+service: audio-api
+
+custom:
+  serverless-offline:
+    port: 3000
+  config: ${file(./env.yml):env}
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  profile: ringrose
+  stage: dev
+  region: us-east-1
+  environment:
+    MONGO_URL: ${self:custom.config.mongo.url}
+
+plugins:
+  - serverless-offline
+
+functions:
+  graphql:
+    handler: src/handler.graphql
+    timeout: 20
+    events:
+    - http:
+        path: graphql
+        method: post
+        cors: true
+    - http:
+        path: graphql
+        method: get  
+
+resources:
+  Resources:
+    S3BucketSongs:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: geemike-aula-songs
+        AccessControl: PublicRead
+        CorsConfiguration:
+          CorsRules:
+            - AllowedOrigins:
+                - '*'
+              AllowedHeaders:
+                - '*'
+              AllowedMethods:
+                - GET
+                - HEAD
+              MaxAge: 3000

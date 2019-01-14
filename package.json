@@ -1,0 +1,29 @@
+{
+  "name": "audio-api",
+  "version": "0.0.1",
+  "description": "Gunpowder, gelatine; Dynamite with a laser beam; Guaranteed to blow your mind",
+  "main": "index.js",
+  "nodemonConfig": {
+    "ignore": [
+      "**.test.js"
+    ]
+  },
+  "scripts": {
+    "start": "nodemon --exec \"sls offline start --skipCacheInvalidation -c\"",
+    "test": "jest"
+  },
+  "author": "Mike Ringrose",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server-lambda": "^2.3.1",
+    "aws-sdk": "^2.387.0",
+    "graphql": "^14.0.2",
+    "mongodb": "^3.1.10",
+    "mongoose": "^5.4.3",
+    "serverless-http": "^1.8.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9",
+    "serverless-offline": "^3.32.2"
+  }
+}
