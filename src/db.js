@@ -32,6 +32,7 @@ const init = async (conn) => {
       ref: 'Album',
     },
     url: String,
+    genre: String,
   });
   const Song = conn.model('Song', SongSchema);
 

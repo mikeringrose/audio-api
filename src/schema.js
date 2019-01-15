@@ -17,6 +17,7 @@ const schema = gql`
     duration: Int!
     releaseDate: String!
     url: String!
+    genre: String
   }
 
   type Album {
@@ -32,7 +33,8 @@ const schema = gql`
   }
 
   input SongFilter {
-    title: String
+    name: String
+    genres: [String]
   }
 `;
 

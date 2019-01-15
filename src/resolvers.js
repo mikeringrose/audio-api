@@ -1,4 +1,5 @@
 const { toIso8601Date } = require('./transforms');
+const { toSongFilter } = require('./filters');
 
 const resolvers = {
   Query: {
@@ -8,7 +9,8 @@ const resolvers = {
     },
     songs: async (root, { filter }, context) => {
       const { Song } = await context.getModel();
-      return Song.find();
+      const where = filter ? toSongFilter(filter) : {};
+      return Song.find(where);
     },
     artist: async (root, { id }, context) => {
       const { Artist } = await context.getModel();
